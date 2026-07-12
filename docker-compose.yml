@@ -1,0 +1,32 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./backend
+    ports:
+      - "8089:8000"
+    environment:
+      DB_HOST: db
+      DB_NAME: demo
+      DB_USER: postgres
+      DB_PASSWORD: password
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8888:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

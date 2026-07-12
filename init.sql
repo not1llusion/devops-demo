@@ -1,0 +1,2 @@
+CREATE TABLE visits (count INTEGER);
+INSERT INTO visits VALUES (0);

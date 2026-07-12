@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DevOps Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #1a1a2e;
+            color: #eee;
+        }
+        .container {
+            text-align: center;
+        }
+        button {
+            background: #e94560;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover { background: #c73652; }
+        #visits {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            color: #e94560;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DevOps Demo</h1>
+        <p>Total visits:</p>
+        <div id="visits">...</div>
+        <button onclick="getVisits()">Refresh</button>
+    </div>
+    <script>
+        async function getVisits() {
+            const res = await fetch('/api/visits');
+            const data = await res.json();
+            document.getElementById('visits').textContent = data.visits;
+        }
+        getVisits();
+    </script>
+</body>
+</html>
