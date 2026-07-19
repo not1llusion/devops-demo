@@ -1,0 +1,14 @@
+backend:
+  image: notillusion/devops-demo-backend
+  tag: latest
+  replicas: 1
+
+frontend:
+  image: notillusion/devops-demo-frontend
+  tag: latest
+  replicas: 1
+
+db:
+  name: demo
+  user: postgres
+  password: mypassword
